@@ -5,7 +5,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useRef} from "react";
 import CustomButton from "../ui/CustomButton";
-import { div } from "motion/react-client";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
@@ -15,25 +14,20 @@ const AdSection = () => {
   const leftRef = useRef<HTMLDivElement>(null);
   
   useGSAP(() => {
-    if(!sectionRef.current || !leftRef.current) return;
-      
+  if (!sectionRef.current || !leftRef.current) return;
 
-      const mm = gsap.matchMedia();
-     // Desktop pinning only
-      mm.add("(min-width: 768px)", () => { 
-        ScrollTrigger.create({
-            trigger: sectionRef.current,
-            start: "top top+=100px",
-            end: "bottom bottom-=130px",
-            pin: leftRef.current,
-            pinSpacing: false,
-            scrub: 0.5
-        })
-      }) 
+  const ctx = gsap.context(() => {
+    ScrollTrigger.create({
+      trigger: sectionRef.current,
+      start: "top top+=100",
+      end: "bottom bottom-=130",
+      pin: leftRef.current,
+      scrub: 0.5,
+    });
+  }, sectionRef);
 
-      return () => mm.revert();
-        
-    }, {scope: sectionRef});
+  return () => ctx.revert();
+}, []);
   return (
     <section id="ad-section" className="relative lg:pt-50 pt-16">
      <div ref={sectionRef} className="lg:pt-50 pt-16 lg:grid grid-cols-2 max-md:gap-12 lg:px-24 px-6">
