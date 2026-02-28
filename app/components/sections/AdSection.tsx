@@ -13,35 +13,25 @@ const AdSection = () => {
     const sectionRef = useRef<HTMLDivElement>(null);
     const leftRef = useRef<HTMLDivElement>(null);
 
-   useGSAP(() => {
-  if (!sectionRef.current || !leftRef.current) return;
+    useGSAP(() => {
+      if(!sectionRef.current || !leftRef.current) return;
+      
 
-  const ctx = gsap.context(() => {
-    const mm = gsap.matchMedia();
+      const mm = gsap.matchMedia();
+     // Desktop pinning only
+      mm.add("(min-width: 768px)", () => { 
+        ScrollTrigger.create({
+            trigger: sectionRef.current,
+            start: "top top+=100",
+            end: "bottom bottom-=130",
+            pin: leftRef.current,
+            scrub: 0.5
+        })
+      }) 
 
-    mm.add("(min-width: 768px)", () => {
-      const timeout = setTimeout(() => {
-        const trigger = ScrollTrigger.create({
-          trigger: sectionRef.current,
-          start: "top top+=100",
-          end: "bottom bottom-=130",
-          pin: leftRef.current,
-          scrub: 0.5,
-          invalidateOnRefresh: true,
-        });
-
-        ScrollTrigger.refresh();
-
-        return () => trigger.kill();
-      }, 100); // wait for layout + video
-
-      return () => clearTimeout(timeout);
-    });
-
-  }, sectionRef);
-
-  return () => ctx.revert();
-}, []);
+      return () => mm.revert();
+        
+    }, {scope: sectionRef});
   return (
      <div ref={sectionRef} id="ad-section" className="relative lg:pt-50 pt-16 min-h-screen lg:grid grid-cols-2 flex flex-col-reverse max-md:gap-12 lg:px-24 px-6">
           <div ref={leftRef} className="flex flex-col lg:gap-4 gap-6 will-change-transform">
