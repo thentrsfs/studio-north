@@ -6,7 +6,7 @@ import { useGSAP } from "@gsap/react";
 import { useRef} from "react";
 import CustomButton from "../ui/CustomButton";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const AdSection = () => {
 
@@ -14,9 +14,11 @@ const AdSection = () => {
     const leftRef = useRef<HTMLDivElement>(null);
 
     useGSAP(() => {
-      const isMobile = window.innerWidth < 768;
-
-      if(isMobile) return;
+      if(!sectionRef.current || !leftRef.current) return;
+      
+      const mm = gsap.matchMedia();
+    
+      mm.add("(min-width: 768px)", () => { 
         ScrollTrigger.create({
             trigger: sectionRef.current,
             start: "top top+=100",
@@ -25,6 +27,10 @@ const AdSection = () => {
             pinSpacing: false,
             scrub: 0.5
         })
+      }) 
+
+      return () => mm.revert();
+        
     }, {scope: sectionRef});
   return (
     <div className="relative lg:pt-50 pt-16">
