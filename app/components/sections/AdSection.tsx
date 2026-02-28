@@ -32,7 +32,7 @@ const AdSection = () => {
 
       return () => mm.revert();
         
-    }, {scope: sectionRef});
+    });
   return (
      <div ref={sectionRef} id="ad-section" className="relative lg:pt-50 pt-16 min-h-screen h-full lg:grid grid-cols-2 max-md:flex flex-col-reverse max-md:gap-12 lg:px-24 px-6">
       <div ref={leftRef} >
