@@ -12,7 +12,7 @@ const AdSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const leftRef = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
+ /*  useGSAP(() => {
     if (!sectionRef.current || !leftRef.current) return;
 
     const mm = gsap.matchMedia();
@@ -32,7 +32,7 @@ const AdSection = () => {
     });
 
     return () => mm.revert(); // Proper cleanup
-  }, { scope: sectionRef });
+  }, { scope: sectionRef }); */
 
   return (
     <section id="ad-section" className="relative lg:pt-50 pt-16">
