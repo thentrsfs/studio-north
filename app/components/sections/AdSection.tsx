@@ -1,62 +1,63 @@
 'use client';
 
-import gsap from "gsap";
+import gsap from "gsap" 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { useRef } from "react";
+import { useRef} from "react";
 import CustomButton from "../ui/CustomButton";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger)
 
 const AdSection = () => {
+
   const sectionRef = useRef<HTMLDivElement>(null);
   const leftRef = useRef<HTMLDivElement>(null);
+  
+  useGSAP(() => {
+    if(!sectionRef.current || !leftRef.current) return;
+      
 
- /*  useGSAP(() => {
-    if (!sectionRef.current || !leftRef.current) return;
+      const mm = gsap.matchMedia();
+     // Desktop pinning only
+      mm.add("(min-width: 768px)", () => { 
+        ScrollTrigger.create({
+            trigger: sectionRef.current,
+            start: "top top+=100px",
+            end: "bottom bottom-=130px",
+            pin: leftRef.current,
+            scrub: 0.5
+        })
+      }) 
 
-    const mm = gsap.matchMedia();
-
-    mm.add("(min-width: 768px)", () => {
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        // Start when the section's top hits 100px from the top of the viewport
-        start: "top top+=100px",
-        // End when the section's bottom hits 130px from the bottom of the viewport
-        end: "bottom bottom-=130px",
-        pin: leftRef.current,
-        pinSpacing: false, // Prevents extra white space if you don't want it
-        scrub: 0.5,
-        invalidateOnRefresh: true, // Recalculates if the window is resized
-      });
-    });
-
-    return () => mm.revert(); // Proper cleanup
-  }, { scope: sectionRef }); */
-
+      return () => mm.revert();
+        
+    }, {scope: sectionRef});
   return (
     <section id="ad-section" className="relative lg:pt-50 pt-16">
-      <div ref={sectionRef} className="lg:pt-50 pt-16 grid lg:grid-cols-2 grid-cols-1 max-md:gap-12 lg:px-24 px-6">
-        <div>
-          {/* REMOVED: will-change-transform to avoid pinning conflicts */}
-          <div ref={leftRef} className="flex flex-col lg:gap-4 gap-6">
-            <p className="lg:text-[100px] text-[38px] leading-10 lg:leading-24 tracking-tight max-w-3xl font-black uppercase font-plus">
-              STUDIO/NORTH® helps <br className="max-md:hidden" /> brands 
-              <span className="dark:bg-rose bg-offwhite lg:w-18 lg:h-18 w-7 h-7 rounded-full inline-block"></span> 
-              connect w/ culture
-            </p>
-            <div className="uppercase font-medium">Adweek <span className="font-bold">Agency Spotlight</span></div>
+     <div ref={sectionRef} className="lg:pt-50 pt-16 grid lg:grid-cols-2 grid-cols-1 max-md:gap-12 lg:px-24 px-6">
+      <div>
+          <div ref={leftRef} className="flex flex-col lg:gap-4 gap-6 will-change-transform">
+            <p className="lg:text-[100px] text-[38px] leading-10 lg:leading-24 tracking-tight max-w-3xl font-black uppercase font-plus">STUDIO/NORTH® helps <br className="max-md:hidden" /> brands <span className="dark:bg-rose bg-offwhite lg:w-18 lg:h-18 w-7 h-7 rounded-full inline-block"></span> connect w/ culture</p>
+<div className="uppercase font-medium ">Adweek <span className="font-bold">Agency Spotlight</span> </div>
             <CustomButton text="About Us" />
+            </div>
           </div>
-        </div>
-        <div className="bg-offwhite dark:bg-ink">
-          <video className="w-full h-full object-cover block" autoPlay loop muted playsInline preload="metadata">
-            <source src="/video/woman_skateboarding.mp4" />
-          </video>
-        </div>
-      </div>
-    </section>
-  );
-};
+         <div className="bg-offwhite dark:bg-ink">
+  <video
+    className="w-full h-full object-cover block"
+    autoPlay
+    loop
+    muted
+    playsInline
+    preload="metadata"
+  >
+    <source src="/video/woman_skateboarding.mp4" />
+  </video>
+</div>
 
-export default AdSection;
+        </div>
+        </section>
+  )
+}
+
+export default AdSection
