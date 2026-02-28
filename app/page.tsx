@@ -61,10 +61,6 @@ export default function Home() {
       return () => trigger.kill();
     }, [ setTheme ]);
 
-    // Set light theme on load
-    useEffect(() => {
-      setTheme("light");
-    }, [])
   
   return (
   <>
