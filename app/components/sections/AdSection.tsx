@@ -33,7 +33,7 @@ const AdSection = () => {
         
     }, {scope: sectionRef});
   return (
-    <section id="ad-section" className="relative lg:pt-50 pt-16">
+    <section id="ad-section" className="relative lg:pt-50 pt-16 min-h-screen">
      <div ref={sectionRef} className="lg:pt-50 pt-16 grid lg:grid-cols-2 grid-cols-1 max-md:gap-12 lg:px-24 px-6">
       <div>
           <div ref={leftRef} className="flex flex-col lg:gap-4 gap-6 will-change-transform">
