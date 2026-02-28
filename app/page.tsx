@@ -40,27 +40,32 @@ export default function Home() {
     }, []);
 
     // Change theme on scroll
-    useEffect(() => {
-      const trigger = ScrollTrigger.create({
-        trigger: "#ad-section",
-        start: "top center",
-        end: "bottom center-=200",
-        onEnter: () => {
-          setTheme("dark");
-        },
-        onEnterBack: () => {
-          setTheme("dark");
-        },
-        onLeave: () => {
-          setTheme("light");
-        },
-        onLeaveBack: () => {
-          setTheme("light");
-        },
-      })
-      return () => trigger.kill();
-    }, [ setTheme ]);
+   useEffect(() => {
+  const timeout = setTimeout(() => {
+    const el = document.querySelector("#ad-section");
+    if (!el) return; // prevents hydration crash
 
+    const trigger = ScrollTrigger.create({
+      trigger: el,
+      start: "top center",
+      end: "bottom center-=200",
+      onEnter: () => setTheme("dark"),
+      onEnterBack: () => setTheme("dark"),
+      onLeave: () => setTheme("light"),
+      onLeaveBack: () => setTheme("light"),
+    });
+
+    return () => trigger.kill();
+  }, 100); // give Next.js time to mount
+
+  return () => clearTimeout(timeout);
+}, [setTheme]);
+
+
+    // Set light theme on load
+    useEffect(() => {
+      setTheme("light");
+    }, [])
   
   return (
   <>
