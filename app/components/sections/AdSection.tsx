@@ -25,9 +25,7 @@ const AdSection = () => {
           trigger: sectionRef.current,
           start: "top top+=100",
           end: "bottom bottom-=130",
-          pin: leftRef.current,
-          scrub: 0.5,
-          invalidateOnRefresh: true,
+        
         });
 
         ScrollTrigger.refresh();
