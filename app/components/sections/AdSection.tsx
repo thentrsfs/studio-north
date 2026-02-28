@@ -25,7 +25,9 @@ const AdSection = () => {
           trigger: sectionRef.current,
           start: "top top+=100",
           end: "bottom bottom-=130",
-        
+          pin: leftRef.current,
+          pinSpacing: false,
+          scrub: 0.5,
         });
 
         ScrollTrigger.refresh();
@@ -41,9 +43,9 @@ const AdSection = () => {
   return () => ctx.revert();
 }, []);
   return (
-     <div ref={sectionRef} id="ad-section" className="relative lg:pt-50 pt-16 min-h-screen h-full lg:grid grid-cols-2 max-md:flex flex-col-reverse max-md:gap-12 lg:px-24 px-6">
+     <div ref={sectionRef} id="ad-section" className="relative lg:pt-50 pt-16 min-h-screen h-full max-md:flex flex-col-reverse  lg:grid grid-cols-2max-md:gap-12 lg:px-24 px-6">
       <div ref={leftRef} >
-          <div className="flex flex-col lg:gap-4 gap-6 will-change-transform">
+          <div className="lg:gap-4 gap-6 will-change-transform">
             <p className="lg:text-[100px] text-[38px] leading-10 lg:leading-24 tracking-tight max-w-3xl font-black uppercase font-plus">STUDIO/NORTH® helps <br className="max-md:hidden" /> brands <span className="dark:bg-rose bg-offwhite lg:w-18 lg:h-18 w-7 h-7 rounded-full inline-block"></span> connect w/ culture</p>
 <div className="uppercase font-medium ">Adweek <span className="font-bold">Agency Spotlight</span> </div>
             <CustomButton text="About Us" />
