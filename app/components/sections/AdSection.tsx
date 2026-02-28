@@ -1,6 +1,6 @@
 'use client';
 
-import gsap from "gsap"
+import gsap from "gsap" 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useRef} from "react";
@@ -16,8 +16,9 @@ const AdSection = () => {
     useGSAP(() => {
       if(!sectionRef.current || !leftRef.current) return;
       
+
       const mm = gsap.matchMedia();
-    
+     // Desktop pinning only
       mm.add("(min-width: 768px)", () => { 
         ScrollTrigger.create({
             trigger: sectionRef.current,
