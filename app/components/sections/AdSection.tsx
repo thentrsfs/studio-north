@@ -5,7 +5,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useRef} from "react";
 import CustomButton from "../ui/CustomButton";
-gsap.registerPlugin(ScrollTrigger, useGSAP)
+
+gsap.registerPlugin(ScrollTrigger)
 
 const AdSection = () => {
 
@@ -24,7 +25,6 @@ const AdSection = () => {
             start: "top top+=100px",
             end: "bottom bottom-=130px",
             pin: leftRef.current,
-            pinSpacing: false,
             scrub: 0.5
         })
       }) 
@@ -42,7 +42,7 @@ const AdSection = () => {
             <CustomButton text="About Us" />
             </div>
           </div>
-         <div className="bg-offwhite dark:bg-ink">
+         <div className="bg-offwhite dark:bg-ink aspect-video">
   <video
     className="w-full h-full object-cover block"
     autoPlay
