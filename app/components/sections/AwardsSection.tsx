@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import CustomButton from "../ui/CustomButton";
 import RunetaskLogo from "../ui/logos/RunetaskLogo";
