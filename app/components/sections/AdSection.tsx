@@ -39,7 +39,7 @@ const AdSection = () => {
 <div className="uppercase font-medium ">Adweek <span className="font-bold">Agency Spotlight</span> </div>
             <CustomButton text="About Us" />
           </div>
-         <div className="bg-offwhite dark:bg-ink">
+         <div className="bg-offwhite dark:bg-ink min-h-screen">
   <video
     className="w-full h-full object-cover block"
     autoPlay
