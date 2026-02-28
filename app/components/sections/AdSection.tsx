@@ -32,9 +32,9 @@ const AdSection = () => {
       return () => mm.revert();
         
     }, {scope: sectionRef});
-  /* return (
+  return (
     <section id="ad-section" className="relative lg:pt-50 pt-16">
-     <div ref={sectionRef} className="lg:pt-50 pt-16 lg:grid grid-cols-2 max-md:gap-12 lg:px-24 px-6">
+     <div ref={sectionRef} className="lg:pt-50 pt-16 grid lg:grid-cols-2 grid-cols-1 max-md:gap-12 lg:px-24 px-6">
       <div>
           <div ref={leftRef} className="flex flex-col lg:gap-4 gap-6 will-change-transform">
             <p className="lg:text-[100px] text-[38px] leading-10 lg:leading-24 tracking-tight max-w-3xl font-black uppercase font-plus">STUDIO/NORTH® helps <br className="max-md:hidden" /> brands <span className="dark:bg-rose bg-offwhite lg:w-18 lg:h-18 w-7 h-7 rounded-full inline-block"></span> connect w/ culture</p>
@@ -57,11 +57,7 @@ const AdSection = () => {
 
         </div>
         </section>
-  ) */return (
-  <div style={{ height: "100vh", background: "red" }}>
-    TEST SECTION
-  </div>
-);
+  )
 }
 
 export default AdSection
