@@ -1,16 +1,19 @@
 @import "https://unpkg.com/open-props/durations.min.css";
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 
 @theme inline {
 
   /* Font Variables */
   --font-inter: var(--font-inter);
   --font-space: var(--font-space-grotesk);
+  --font-plus: var(--font-plus-jakarta-sans);
 
   /* Color Variables */
-  --color-brown: #252422;
   --color-offwhite: #f4f4f4;
+  --color-ink: #252422;
   --color-rose: #f9cdcd;
 }
 
@@ -19,32 +22,24 @@ body:has(a:hover) .projects-cursor {
   color:transparent
 }
 
-.noise {
-  animation: liner var(--hour) linear infinite;
-}
-.noise {
-  --lines: 0.0025px;
-  
-  mask: repeating-radial-gradient(
-    circle at center,
-    #000,
-    var(--lines),
-    #000,
-    0, /* transition hints make code easier to manage */
-    #0000,
-    calc(var(--lines) * 2),
-    #0000 0 /* trailing 0 is part of the hard stop logic */
-  );
+::selection {
+  background-color: var(--color-ink);
+  color: var(--color-offwhite);
 }
 
-@property --lines {
-  syntax: "<length>";
-  inherits: false;
-  initial-value: 0.00010px;
+.dark ::selection {
+  background-color: var(--color-offwhite);
+  color: var(--color-ink);
 }
 
-@keyframes liner {
-  50% {
-    --lines: 0.00012px;
-  }
+/* Hide scrollbar for Chrome, Safari, Edge */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
+
+/* Hide scrollbar for Firefox */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+
