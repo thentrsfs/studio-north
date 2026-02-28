@@ -13,26 +13,35 @@ const AdSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const leftRef = useRef<HTMLDivElement>(null);
   
-  useGSAP(() => {
-    if(!sectionRef.current || !leftRef.current) return;
-      
+ useGSAP(() => {
+  if (!sectionRef.current || !leftRef.current) return;
 
-      const mm = gsap.matchMedia();
-     // Desktop pinning only
-      mm.add("(min-width: 768px)", () => { 
-        ScrollTrigger.create({
-            trigger: sectionRef.current,
-            start: "top top+=100px",
-            end: "bottom bottom-=130px",
-            pin: leftRef.current,
-            pinSpacing: false,
-            scrub: 0.5
-        })
-      }) 
+  const ctx = gsap.context(() => {
+    const mm = gsap.matchMedia();
 
-      return () => mm.revert();
-        
+    mm.add("(min-width: 768px)", () => {
+      const timeout = setTimeout(() => {
+        const trigger = ScrollTrigger.create({
+          trigger: sectionRef.current,
+          start: "top top+=100",
+          end: "bottom bottom-=130",
+          pin: leftRef.current,
+          scrub: 0.5,
+          invalidateOnRefresh: true,
+        });
+
+        ScrollTrigger.refresh();
+
+        return () => trigger.kill();
+      }, 100); // wait for layout + video
+
+      return () => clearTimeout(timeout);
     });
+
+  }, sectionRef);
+
+  return () => ctx.revert();
+}, []);
   return (
      <div ref={sectionRef} id="ad-section" className="relative lg:pt-50 pt-16 min-h-screen h-full lg:grid grid-cols-2 max-md:flex flex-col-reverse max-md:gap-12 lg:px-24 px-6">
       <div ref={leftRef} >
