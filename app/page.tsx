@@ -74,7 +74,7 @@ export default function Home() {
  >
     <Nav transparent={isTransparent}/>
     <Hero/>
-    <div id="sections-below" className="relative text-ink dark:text-rose transition-all duration-500 bg-offwhite dark:bg-ink overflow-hidden z-10">
+    <div id="sections-below" className="relative text-ink dark:text-rose transition-all duration-500 bg-offwhite dark:bg-ink z-10">
     <AwardsSection/>
     <FeaturesSection/>
     <AdSection/>
