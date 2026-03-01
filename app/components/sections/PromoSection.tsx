@@ -1,59 +1,38 @@
 'use client';
 
-import gsap from "gsap" 
+import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useRef} from "react";
 import CustomButton from "../ui/CustomButton";
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger);
 
 const PromoSection = () => {
 
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const leftRef = useRef<HTMLDivElement>(null);
-  
-  useGSAP(() => {
-    if(!sectionRef.current || !leftRef.current) return;
-      
+    const sectionRef = useRef<HTMLDivElement>(null);
+    const leftRef = useRef<HTMLDivElement>(null);
 
-      const mm = gsap.matchMedia();
-     // Desktop pinning only
-      mm.add("(min-width: 768px)", () => { 
+    useGSAP(() => {
+      const isMobile = window.innerWidth < 768;
+
+      if(isMobile) return;
         ScrollTrigger.create({
             trigger: sectionRef.current,
-<<<<<<< HEAD
             start: "top top+=120",
             end: "bottom bottom-=260",
-=======
-            start: "top top+=100px",
-            end: "bottom bottom-=130px",
->>>>>>> 8545066ef4883159b79690d72f7809ee15eb7c82
             pin: leftRef.current,
+            pinSpacing: false,
             scrub: 0.5
         })
-      }) 
-
-      ScrollTrigger.refresh();
-      return () => mm.revert();
-        
     }, {scope: sectionRef});
-    
   return (
-<<<<<<< HEAD
     <div className="relative lg:pt-50 pt-16">
      <div ref={sectionRef} id="promo-section" className="lg:grid grid-cols-2 max-md:flex flex-col-reverse max-md:gap-12 lg:px-24 px-6">
           <div ref={leftRef} className="flex flex-col lg:gap-4 gap-6">
-=======
-    <section id="promo-section" className="relative lg:pt-50 pt-16">
-     <div ref={sectionRef} className="lg:pt-50 pt-16 grid lg:grid-cols-2 grid-cols-1 max-md:gap-12 lg:px-24 px-6">
-
-          <div ref={leftRef} className="lg:gap-4 gap-6">
->>>>>>> 8545066ef4883159b79690d72f7809ee15eb7c82
             <p className="lg:text-[100px] text-[38px] leading-10 lg:leading-24 tracking-tight max-w-3xl font-black uppercase font-plus">STUDIO/NORTH® helps <br className="max-md:hidden" /> brands <span className="dark:bg-rose bg-offwhite lg:w-18 lg:h-18 w-7 h-7 rounded-full inline-block"></span> connect w/ culture</p>
 <div className="uppercase font-medium ">Adweek <span className="font-bold">Agency Spotlight</span> </div>
             <CustomButton text="About Us" />
-            </div>
           </div>
          <div className="bg-offwhite dark:bg-ink">
   <video
@@ -67,7 +46,9 @@ const PromoSection = () => {
     <source src="/video/woman_skateboarding.mp4" />
   </video>
 </div>
-        </section>
+
+        </div>
+    </div>
   )
 }
 
