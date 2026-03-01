@@ -54,7 +54,7 @@ const DraggingCursor = ({className, cursorPos, active, isDragging, wrapperRef} :
  ${className}`} style={{ x: active ? mouseX : cursorPos.x, y: active ? mouseY : cursorPos.y, translateX: "-50%", translateY: "-50%", scale: active ? 1 : 0.9 }}>
  <IoMdArrowDropleft className={`text-3xl text-rose transition-all duration-300 ${isDragging ? 'opacity-100' : 'opacity-0'}`} />
       <div className={`w-28 h-28 rounded-full text-sm bg-rose text-brown flex items-center justify-center font-plus font-black uppercase tracking-wider transition-all duration-300 ${isDragging && 'scale-75'}`}>
-        <motion.div className={`transition-all duration-300 ${isDragging ? 'opacity-0' : 'opacity-100'}`}
+        <motion.div className={`transition-all duration-300 text-ink ${isDragging ? 'opacity-0' : 'opacity-100'}`}
 animate={
     active
       ? { scale: 0.9, letterSpacing: "0.2em" }

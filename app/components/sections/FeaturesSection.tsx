@@ -107,6 +107,33 @@ const handleLeave = () => {
   });
 }, []);
 
+// Intersection observer to deactivate cursor when leaving section
+useEffect(() => {
+  const wrapper = cursorWrapperRef.current;
+  if (!wrapper) return;
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (!entry.isIntersecting) {
+        setActive(false);
+
+        const bounds = wrapper.getBoundingClientRect();
+        setCursorPos({
+          x: bounds.width - 120,
+          y: bounds.height / 2 - 40,
+        });
+      }
+    },
+    {
+      threshold: 0.5, // when less than 10% visible → hide
+    }
+  );
+
+  observer.observe(wrapper);
+
+  return () => observer.disconnect();
+}, []);
+
 
   return (
     <section className='py-3 relative'>

@@ -8,7 +8,7 @@ import Hero from "./components/sections/Hero";
 import Nav from "./components/ui/Nav";
 import AwardsSection from "./components/sections/AwardsSection";
 import FeaturesSection from "./components/sections/FeaturesSection";
-import AdSection from "./components/sections/AdSection";
+import PromoSection from "./components/sections/PromoSection";
 import NewsSection from "./components/sections/NewsSection";
 import Footer from "./components/sections/Footer";
 import SplashScreen from "./components/ui/SplashScreen";
@@ -42,7 +42,7 @@ export default function Home() {
     // Change theme on scroll
     useEffect(() => {
       const trigger = ScrollTrigger.create({
-        trigger: "#ad-section",
+        trigger: "#promo-section",
         start: "top center",
         end: "bottom center-=200",
         onEnter: () => {
@@ -76,7 +76,7 @@ export default function Home() {
     <div id="sections-below" className="relative text-ink dark:text-rose transition-all duration-500 bg-offwhite dark:bg-ink overflow-hidden z-10">
     <AwardsSection/>
     <FeaturesSection/>
-    <AdSection/>
+    <PromoSection/>
     <NewsSection/>
     <Footer/>
     </div>
