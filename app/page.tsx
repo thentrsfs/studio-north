@@ -58,6 +58,7 @@ export default function Home() {
           setTheme("light");
         },
       })
+      ScrollTrigger.refresh();
       return () => trigger.kill();
     }, [ setTheme ]);
 
