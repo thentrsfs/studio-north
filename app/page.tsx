@@ -40,7 +40,7 @@ export default function Home() {
     }, []);
 
     // Change theme on scroll
-   /*  useEffect(() => {
+    useEffect(() => {
       const trigger = ScrollTrigger.create({
         trigger: "#ad-section",
         start: "top center",
@@ -60,7 +60,7 @@ export default function Home() {
       })
       ScrollTrigger.refresh();
       return () => trigger.kill();
-    }, [ setTheme ]); */
+    }, [ setTheme ]);
 
     // Set light theme on load
     useEffect(() => {
