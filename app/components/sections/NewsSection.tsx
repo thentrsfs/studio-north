@@ -23,7 +23,7 @@ const NewsSection = () => {
   };
 
   useEffect(() => {
-    if (window.innerWidth >= 768) return;
+    if (window.innerWidth >= 1050) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -36,7 +36,7 @@ const NewsSection = () => {
         });
       },
       {
-        rootMargin: "-10% 0px -10% 0px",  
+        rootMargin: window.innerWidth >= 768 ? "-30% 0px -30% 0px" : "-10% 0px -10% 0px",  
         threshold: 1,
       }
     );
@@ -67,19 +67,19 @@ const NewsSection = () => {
             animate="rest"
             className="article group z-10 pt-5 border-t border-ink dark:border-rose flex justify-between cursor-pointer"
           >
-            <div className="flex max-md:flex-col gap-6">
+            <div className="flex max-md:flex-col w-full">
               <div className="lg:w-140 lg:h-90 w-full relative overflow-hidden">
                 <Image
                   src={item.image}
                   alt={item.title}
                   width={400}
                   height={400}
-                  className="w-full h-full object-cover scale-110 transition-all duration-300 group-hover:scale-100 group-[.active]:scale-100"
+                  className="w-full lg:h-full h-50 md:w-80 object-cover scale-110 transition-all duration-300 group-hover:scale-100 group-[.active]:scale-100"
                 />
               </div>
 
-              <div className="flex flex-col justify-between gap-8">
-                <h3 className="lg:text-4xl text-3xl lg:font-bold font-semibold max-md:tracking-tight font-plus uppercase underline-offset-3 decoration-4 transition-all duration-300 group-hover:underline group-[.active]:underline">
+              <div className="flex flex-col justify-between gap-8 w-full">
+                <h3 className="lg:text-4xl text-3xl lg:font-bold font-semibold max-lg:tracking-tight font-plus uppercase underline-offset-3 decoration-4 transition-all duration-300 group-hover:underline group-[.active]:underline">
                   {item.title}
                 </h3>
 
@@ -96,7 +96,7 @@ const NewsSection = () => {
             </div>
 
             <motion.div variants={arrowVariants}>
-              <IoArrowForwardOutline className="text-4xl max-md:hidden" />
+              <IoArrowForwardOutline className="text-4xl max-lg:hidden" />
             </motion.div>
           </motion.div>
         ))}

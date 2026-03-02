@@ -2,13 +2,13 @@ import { IoArrowForwardOutline } from "react-icons/io5";
 
 const Footer = () => {
   return (
-    <footer className="lg:h-160 h-full bg-ink flex flex-col justify-between max-md:gap-16 w-full text-offwhite lg:pt-24 pt-12 font-plus" >
+    <footer className="lg:h-160 h-full bg-ink flex flex-col justify-between max-lg:gap-16 w-full text-offwhite lg:pt-24 pt-12 font-plus" >
         <div className="grid grid-cols-1 lg:grid-cols-2 lg:pl-24 lg:pr-50 gap-10 lg:gap-12 px-6">
        <div className="lg:text-3xl text-xl font-black -tracking-wider select-none text-offwhite">
       S/N®
     </div>
-    <div className="text-offwhite lg:text-3xl text-2xl font-medium leading-tightest">
-        We collaborate with innovative brands and agencies. <a className="underline" href="mailto:filipstojkov54@gmail.com">Send us an email.</a>
+    <div className="text-offwhite lg:text-3xl text-2xl  font-medium leading-tightest">
+        We collaborate with innovative brands and agencies. <br className="lg:hidden max-md:hidden md:block" /> <a className="underline" href="mailto:filipstojkov54@gmail.com">Send us an email.</a>
     </div>
     </div>
     
@@ -26,7 +26,7 @@ const Footer = () => {
     </div>
 </div>
 
-<div className="flex max-md:flex-col lg:justify-between max-md:gap-10 text-sm">
+<div className="flex max-md:flex-col lg:justify-between max-md:gap-10 md:gap-20 text-sm">
 <div className="flex flex-col gap-4">
     <div className="flex items-center gap-2">
         <div className="w-3 h-3 rounded-full bg-offwhite" />
@@ -67,7 +67,7 @@ const Footer = () => {
 </div>
 </div>
     </div>
-    <div className="bg-black/30 w-full lg:h-15 py-6 max-md:gap-1.5 lg:px-24 flex max-md:flex-col justify-between items-center uppercase text-xs font-medium text-offwhite/30 ">
+    <div className="bg-black/30 w-full md:h-15 py-6 max-md:gap-1.5 lg:px-24 px-6 flex max-md:flex-col justify-between items-center uppercase text-xs font-medium text-offwhite/30 ">
     <div className="flex gap-1">
         <span>Studio/North®,inc</span>
         <span>10-26©</span>

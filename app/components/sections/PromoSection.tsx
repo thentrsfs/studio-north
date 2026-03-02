@@ -14,7 +14,7 @@ const PromoSection = () => {
     const leftRef = useRef<HTMLDivElement>(null);
 
     useGSAP(() => {
-      const isMobile = window.innerWidth < 768;
+      const isMobile = window.innerWidth < 1050;
 
       if(isMobile) return;
         ScrollTrigger.create({
@@ -28,9 +28,9 @@ const PromoSection = () => {
     }, {scope: sectionRef});
   return (
     <div className="relative lg:pt-50 pt-16">
-     <div ref={sectionRef} id="promo-section" className="lg:grid grid-cols-2 max-md:flex flex-col-reverse max-md:gap-12 lg:px-24 px-6">
+     <div ref={sectionRef} id="promo-section" className="lg:grid grid-cols-2 max-lg:flex flex-col-reverse max-lg:gap-12 lg:px-24 px-6">
           <div ref={leftRef} className="flex flex-col lg:gap-4 gap-6">
-            <p className="lg:text-[100px] text-[38px] leading-10 lg:leading-24 tracking-tight max-w-3xl font-black uppercase font-plus">STUDIO/NORTH® helps <br className="max-md:hidden" /> brands <span className="dark:bg-rose bg-offwhite lg:w-18 lg:h-18 w-7 h-7 rounded-full inline-block"></span> connect w/ culture</p>
+            <p className="lg:text-[100px] text-[38px] leading-10 lg:leading-24 tracking-tight max-w-3xl font-black uppercase font-plus">STUDIO/NORTH® helps <br className="max-lg:hidden" /> brands <span className="dark:bg-rose bg-ink lg:w-18 lg:h-18 w-7 h-7 rounded-full inline-block"></span> connect w/ culture</p>
 <div className="uppercase font-medium ">Adweek <span className="font-bold">Agency Spotlight</span> </div>
             <CustomButton text="About Us" />
           </div>
