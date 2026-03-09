@@ -17,17 +17,16 @@ const Nav = () => {
     const [hidden, setHidden] = useState(false);
 
     const pathname = usePathname();
+    const isHome = pathname === '/';
+    const shouldBeTransparent = isHome && isTransparent;
 
     // Transparent nav on scroll
     useEffect(() => {
-      // If not homepage, show solid nav
-      if(pathname !== '/') {
-        setIsTransparent(false);
-        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-        return;
-      }
 
-      setIsTransparent(true);
+      // Don't create ScrollTrigger on non-home pages and kill existing triggers
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+
+      if(!isHome) return;
 
      const trigger = ScrollTrigger.create({
         trigger: "#sections-below",
@@ -41,12 +40,11 @@ const Nav = () => {
         },
       });
       return () => trigger.kill();
-    }, [pathname]);
+    }, [isHome]);
 
 
     useEffect(() => {
       let lastY = window.scrollY;
-
       const onScroll = () => {
         const currentY = window.scrollY;
 
@@ -66,11 +64,11 @@ const Nav = () => {
 
   return (
     <>
-    <nav className={`fixed z-20 w-full ${isTransparent
+    <nav className={`fixed z-20 w-full ${shouldBeTransparent
       ? 'bg-transparent text-offwhite'
       : 'bg-offwhite text-ink dark:bg-ink dark:text-rose'
     } flex justify-between px-6 py-4 xl:py-10 xl:px-24 transition-all duration-500 ease-in-out ${hidden && !isMenuOpen ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'}`}>
-<Logo className={isMenuOpen ? 'text-rose' : !isTransparent ? 'text-ink dark:text-rose' : 'text-offwhite dark:text-ink'}/>
+<Logo className={isMenuOpen ? 'text-rose' : !shouldBeTransparent ? 'text-ink dark:text-rose' : 'text-offwhite dark:text-ink'}/>
 <div className="hidden lg:flex items-center gap-12 text-xs uppercase tracking-wider font-plus font-semibold">
    <a
   href="/work"
@@ -79,7 +77,7 @@ const Nav = () => {
   Work
   <span
     className={`
-      absolute left-0 bottom-[0.5px] h-px w-full ${!isTransparent ? 'bg-ink dark:bg-rose' : 'bg-offwhite'} ${pathname === '/work' ? 'scale-x-100' : ' group-hover:scale-x-100 group-hover:origin-left'}
+      absolute left-0 bottom-[0.5px] h-px w-full ${!shouldBeTransparent ? 'bg-ink dark:bg-rose' : 'bg-offwhite'} ${pathname === '/work' ? 'scale-x-100' : ' group-hover:scale-x-100 group-hover:origin-left'}
       scale-x-0 origin-left
       transition-transform duration-300
       group-not-[&:hover]:origin-right
@@ -93,7 +91,7 @@ const Nav = () => {
   About
  <span
     className={`
-      absolute left-0 bottom-[0.5px] h-px w-full ${!isTransparent ? 'bg-ink dark:bg-rose' : 'bg-offwhite'}
+      absolute left-0 bottom-[0.5px] h-px w-full ${!shouldBeTransparent ? 'bg-ink dark:bg-rose' : 'bg-offwhite'}
       scale-x-0 origin-left
       transition-transform duration-300
       group-hover:scale-x-100 group-hover:origin-left
@@ -108,7 +106,7 @@ const Nav = () => {
   News
  <span
     className={`
-      absolute left-0 bottom-[0.5px] h-px w-full ${!isTransparent ? 'bg-ink dark:bg-rose' : 'bg-offwhite'}
+      absolute left-0 bottom-[0.5px] h-px w-full ${!shouldBeTransparent ? 'bg-ink dark:bg-rose' : 'bg-offwhite'}
       scale-x-0 origin-left
       transition-transform duration-300
       group-hover:scale-x-100 group-hover:origin-left
@@ -123,7 +121,7 @@ const Nav = () => {
   Thinking
  <span
     className={`
-      absolute left-0 bottom-[0.5px] h-px w-full ${!isTransparent ? 'bg-ink dark:bg-rose' : 'bg-offwhite'}
+      absolute left-0 bottom-[0.5px] h-px w-full ${!shouldBeTransparent ? 'bg-ink dark:bg-rose' : 'bg-offwhite'}
       scale-x-0 origin-left
       transition-transform duration-300
       group-hover:scale-x-100 group-hover:origin-left
@@ -138,7 +136,7 @@ const Nav = () => {
   Careers
  <span
     className={`
-      absolute left-0 bottom-[0.5px] h-px w-full ${!isTransparent ? 'bg-ink dark:bg-rose' : 'bg-offwhite'}
+      absolute left-0 bottom-[0.5px] h-px w-full ${!shouldBeTransparent ? 'bg-ink dark:bg-rose' : 'bg-offwhite'}
       scale-x-0 origin-left
       transition-transform duration-300
       group-hover:scale-x-100 group-hover:origin-left
@@ -153,7 +151,7 @@ const Nav = () => {
   Contact
  <span
     className={`
-      absolute left-0 bottom-[0.5px] h-px w-full ${!isTransparent ? 'bg-ink dark:bg-rose' : 'bg-offwhite'}
+      absolute left-0 bottom-[0.5px] h-px w-full ${!shouldBeTransparent ? 'bg-ink dark:bg-rose' : 'bg-offwhite'}
       scale-x-0 origin-left
       transition-transform duration-300
       group-hover:scale-x-100 group-hover:origin-left
@@ -162,7 +160,7 @@ const Nav = () => {
   />
 </a>
    </div>
-<Dots bgColor={isTransparent ? 'bg-offwhite' : 'bg-ink dark:bg-rose'} onClick={() => setIsProjectsOpen(true)} />
+<Dots bgColor={shouldBeTransparent ? 'bg-offwhite' : 'bg-ink dark:bg-rose'} onClick={() => setIsProjectsOpen(true)} />
 <span onClick={() => setIsMenuOpen(true)} className="lg:hidden uppercase tracking-wider font-medium font-plus">Menu</span>
 <div className={`fixed inset-0 flex flex-col justify-between pt-30 p-6 h-dvh bg-ink transition-all duration-500 ease-in-out ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}> 
   <nav className="flex flex-col gap-8 font-plus font-medium text-lg text-rose uppercase tracking-wider">
