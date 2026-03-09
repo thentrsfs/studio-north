@@ -67,14 +67,14 @@ const NewsSection = () => {
             animate="rest"
             className="article group z-10 pt-5 border-t border-ink dark:border-rose flex justify-between cursor-pointer"
           >
-            <div className="flex max-md:flex-col w-full">
-              <div className="lg:w-140 lg:h-90 w-full relative overflow-hidden">
+            <div className="flex max-md:flex-col w-full gap-8">
+              <div className="lg:w-160 lg:h-90 w-full relative overflow-hidden">
                 <Image
                   src={item.image}
                   alt={item.title}
                   width={400}
                   height={400}
-                  className="w-full lg:h-full h-50 md:w-80 object-cover scale-110 transition-all duration-300 group-hover:scale-100 group-[.active]:scale-100"
+                  className="w-full lg:h-full h-50 object-cover scale-110 transition-all duration-300 group-hover:scale-100 group-[.active]:scale-100"
                 />
               </div>
 

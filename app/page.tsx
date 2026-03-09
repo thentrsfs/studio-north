@@ -5,7 +5,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { useTheme } from "next-themes";
 import Hero from "./components/sections/Hero";
-import Nav from "./components/ui/Nav";
 import AwardsSection from "./components/sections/AwardsSection";
 import FeaturesSection from "./components/sections/FeaturesSection";
 import PromoSection from "./components/sections/PromoSection";
@@ -18,26 +17,8 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Home() {
 
   const [loading, setLoading] = useState(true);
-  // State for transparent nav
-  const [isTransparent, setIsTransparent] = useState(true);
   // Dark and light theme
   const {setTheme } = useTheme();
-
-  // Transparent nav on scroll
-    useEffect(() => {
-     const trigger = ScrollTrigger.create({
-        trigger: "#sections-below",
-        start: "top center",
-        end: "bottom center",
-        onEnter: () => {
-          setIsTransparent(false);
-        },
-        onLeaveBack: () => {
-          setIsTransparent(true);
-        },
-      });
-      return () => trigger.kill();
-    }, []);
 
     // Change theme on scroll
     useEffect(() => {
@@ -72,9 +53,8 @@ export default function Home() {
   {loading && <SplashScreen onFinish={() => setLoading(false)}/>}
   <div
  >
-    <Nav transparent={isTransparent}/>
     <Hero/>
-    <div id="sections-below" className="relative text-ink dark:text-rose transition-all duration-500 bg-offwhite dark:bg-ink overflow-hidden z-10">
+    <div id="sections-below" className="relative overflow-hidden z-10">
     <AwardsSection/>
     <FeaturesSection/>
     <PromoSection/>

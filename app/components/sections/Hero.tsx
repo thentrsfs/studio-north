@@ -1,12 +1,24 @@
 'use client';
 import Cursor from "@/app/components/ui/cursors/Cursor"
+import gsap from "gsap";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { useState, useEffect, useRef } from "react"
+
+gsap.registerPlugin(ScrollToPlugin);
 
 const Hero = () => {
   const [pos, setPos] = useState({ x: 0, y: 0 });
   const [active, setActive] = useState(false);
   const [mouse, setMouse] = useState({x: 0, y: 0});
   const heroRef = useRef<HTMLDivElement>(null);
+
+  const handleClick = () => {
+    gsap.to(window, {
+      duration: 0.8,
+      scrollTo: '#awards-section',
+      ease: "power2.inOut"
+    })
+  }
 
   useEffect(() => {
     const move = (e: MouseEvent) => {
@@ -66,6 +78,7 @@ const Hero = () => {
             position: "absolute",
             transform: `translate(${pos.x - 50}px, ${pos.y - 50}px)`
           }}
+          onClick={handleClick}
         />
 
         <video

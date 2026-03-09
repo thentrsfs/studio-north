@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import SmoothScrollProvider from "./components/ui/SmoothScrollProvider";
 import { ThemeProvider } from "next-themes";
+import Nav from "./components/ui/Nav";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -32,10 +33,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} ${plusJakartaSans.variable} antialiased font-inter`}
+        className={`${inter.variable} ${spaceGrotesk.variable} ${plusJakartaSans.variable} antialiased font-inter bg-offwhite dark:bg-ink text-ink dark:text-rose transition-colors duration-500`}
       >
         <SmoothScrollProvider>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+          <Nav/>
         {children}
         </ThemeProvider>
         </SmoothScrollProvider>

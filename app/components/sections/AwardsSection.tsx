@@ -6,7 +6,7 @@ import GeodataLogo from "../ui/logos/GeodataLogo";
 
 const AwardsSection = () => {
   return (
-   <section className="lg:px-24 lg:py-20">
+   <section id="awards-section" className="lg:px-24 lg:py-20">
   <article className="flex justify-around lg:py-30 gap-4 py-12 max-lg:px-6 font-plus">
     <div className="flex flex-col gap-4 items-center hover:scale-105 transition-transform duration-300 cursor-pointer lg:w-80" >
     <RunetaskLogo />
