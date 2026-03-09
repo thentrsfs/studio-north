@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from "react";
+import { useState, useEffect} from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { usePathname } from "next/navigation";
@@ -20,6 +20,15 @@ const Nav = () => {
 
     // Transparent nav on scroll
     useEffect(() => {
+      // If not homepage, show solid nav
+      if(pathname !== '/') {
+        setIsTransparent(false);
+        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+        return;
+      }
+
+      setIsTransparent(true);
+
      const trigger = ScrollTrigger.create({
         trigger: "#sections-below",
         start: "top center",
@@ -32,7 +41,7 @@ const Nav = () => {
         },
       });
       return () => trigger.kill();
-    }, []);
+    }, [pathname]);
 
 
     useEffect(() => {
@@ -54,6 +63,7 @@ const Nav = () => {
       window.addEventListener("scroll", onScroll);
       return () => window.removeEventListener("scroll", onScroll);
     }, []);
+
   return (
     <>
     <nav className={`fixed z-20 w-full ${isTransparent
