@@ -9,7 +9,6 @@ import AwardsSection from "./components/sections/AwardsSection";
 import FeaturesSection from "./components/sections/FeaturesSection";
 import PromoSection from "./components/sections/PromoSection";
 import NewsSection from "./components/sections/NewsSection";
-import Footer from "./components/sections/Footer";
 import SplashScreen from "./components/ui/SplashScreen";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -59,7 +58,6 @@ export default function Home() {
     <FeaturesSection/>
     <PromoSection/>
     <NewsSection/>
-    <Footer/>
     </div>
    </div>
    </>

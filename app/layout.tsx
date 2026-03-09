@@ -4,6 +4,7 @@ import "./globals.css";
 import SmoothScrollProvider from "./components/ui/SmoothScrollProvider";
 import { ThemeProvider } from "next-themes";
 import Nav from "./components/ui/Nav";
+import Footer from "./components/sections/Footer";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -41,6 +42,7 @@ export default function RootLayout({
         {children}
         </ThemeProvider>
         </SmoothScrollProvider>
+        <Footer/>
       </body>
     </html>
   );

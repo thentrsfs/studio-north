@@ -24,11 +24,12 @@ const Nav = () => {
     useEffect(() => {
 
       // Don't create ScrollTrigger on non-home pages and kill existing triggers
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      ScrollTrigger.getById("nav-trigger")?.kill();
 
       if(!isHome) return;
 
      const trigger = ScrollTrigger.create({
+        id: "nav-trigger",
         trigger: "#sections-below",
         start: "top center",
         end: "bottom center",
