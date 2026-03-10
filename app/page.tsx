@@ -21,6 +21,7 @@ export default function Home() {
 
     // Change theme on scroll
     useEffect(() => {
+
       const trigger = ScrollTrigger.create({
         trigger: "#promo-section",
         start: "top center",
@@ -38,14 +39,8 @@ export default function Home() {
           setTheme("light");
         },
       })
-      ScrollTrigger.refresh();
       return () => trigger.kill();
     }, [ setTheme ]);
-
-    // Set light theme on load
-    useEffect(() => {
-      setTheme("light");
-    }, [])
   
   return (
   <>

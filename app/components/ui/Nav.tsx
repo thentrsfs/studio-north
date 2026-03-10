@@ -63,6 +63,13 @@ const Nav = () => {
       return () => window.removeEventListener("scroll", onScroll);
     }, []);
 
+    // Refresh ScrollTrigger on pathname change
+    useEffect(() => {
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 200)
+    }, [pathname])
+
   return (
     <>
     <nav className={`fixed z-20 w-full ${shouldBeTransparent
