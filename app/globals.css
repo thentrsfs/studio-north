@@ -17,6 +17,10 @@
   --color-rose: #f9cdcd;
 }
 
+.heading-xl {
+    @apply lg:text-[102px] text-[38px] leading-10 lg:leading-26 tracking-tight font-black uppercase font-plus;
+  }
+
 body:has(a:hover) .projects-cursor {
   opacity: 0.6;
   color:transparent

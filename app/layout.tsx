@@ -40,9 +40,9 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <Nav/>
         {children}
+        <Footer/>
         </ThemeProvider>
         </SmoothScrollProvider>
-        <Footer/>
       </body>
     </html>
   );
