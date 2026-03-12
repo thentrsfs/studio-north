@@ -18,7 +18,7 @@
 }
 
 .heading-xl {
-    @apply lg:text-[102px] text-[38px] leading-10  tracking-tight font-black uppercase font-plus;
+    @apply lg:text-[102px] text-[38px] leading-25 tracking-tight font-black uppercase font-plus;
   }
 
 body:has(a:hover) .projects-cursor {
