@@ -97,11 +97,15 @@ gsap.from('.reveal',{
   <span>/03</span>
 </div>
 </div>
-<h3 className="text-2xl uppercase font-bold tracking-tight">Branded Ecommerce</h3>
+<div className="flex flex-col gap-8">
+<h3 className="text-2xl uppercase font-bold tracking-tight">CREATIVE DEVELOPMENT</h3>
 <p className="text-sm font-semibold text-ink/80 w-[90%]">
 Branded ecommerce is more than just selling products online; it&apos;s about creating a unique and immersive shopping experience that reflects your brand&apos;s identity and values. </p>
-<CustomButton text="Learn more" className="" />
+<CustomButton text="Learn more" />
 </div>
+</div>
+
+
     </div>
   )
 }

@@ -1,4 +1,13 @@
-export const projects = [
+interface Project {
+  id: number;
+  title: string;
+  category: string;
+  year: string;
+  image: string;
+  description: string;
+}
+
+export const projects: Project[] = [
    {
     id: 1,
     title: "Visual Systems",
