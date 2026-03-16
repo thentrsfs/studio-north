@@ -3,7 +3,6 @@
 import Cursor from "@/app/components/ui/cursors/Cursor"
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import { video } from "motion/react-client";
 import { useState, useEffect, useRef } from "react"
 
 gsap.registerPlugin(ScrollToPlugin);

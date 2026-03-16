@@ -19,7 +19,7 @@ const FeaturesSection = () => {
   const [containerWidth, setContainerWidth] = useState(0);
   const [windowWidth, setWindowWidth] = useState(0);
   const scale = useTransform(x, [-200, 0, 200], [0.98, 1, 0.98]);
-  const isMobile = windowWidth < 768;
+  const isMobile = windowWidth < 1050;
 
 
   // Progress bar
@@ -32,7 +32,6 @@ const FeaturesSection = () => {
 
   // Drag handlers
    const handlePointerDown = (e: React.PointerEvent) => {
-    e.preventDefault();
   setIsDragging(true)
   lastX.current = e.clientX
   e.currentTarget.setPointerCapture(e.pointerId)
@@ -44,7 +43,7 @@ const handlePointerMove = (e: React.PointerEvent) => {
   const delta = e.clientX - lastX.current
   lastX.current = e.clientX
 
-  const sensitivity = 20
+  const sensitivity = isMobile ? 5 : 20
   const maxDrag = containerWidth - windowWidth + 200
 
   let newX = x.get() + delta * sensitivity
@@ -52,12 +51,16 @@ const handlePointerMove = (e: React.PointerEvent) => {
   if (newX > 0) newX = 0
   if (newX < -maxDrag) newX = -maxDrag
 
+  if(isMobile) {
+    x.set(newX)
+  } else {
   animate(x, newX, {
   type: "spring",
   stiffness: 800,
   damping: 60,
   mass: 0.6
-})
+  })
+  }
 }
 
 const handlePointerUp = (e: React.PointerEvent) => {
@@ -83,6 +86,7 @@ const handleLeave = () => {
 
   // Measure widths on mount and resize 
   useEffect(() => {
+
     const measure = () => {
       if (containerRef.current) {
         setContainerWidth(containerRef.current.scrollWidth);
@@ -134,7 +138,6 @@ useEffect(() => {
 
   return () => observer.disconnect();
 }, []);
-
 
   return (
     <section className='py-3 relative'>
