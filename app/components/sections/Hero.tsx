@@ -12,15 +12,20 @@ const Hero = () => {
   const [pos, setPos] = useState({ x: 0, y: 0 });
   const [active, setActive] = useState(false);
   const [mouse, setMouse] = useState({x: 0, y: 0});
-  const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
+  const [isMobile, setIsMobile] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handleClick = () => {
-    if(isMobile) {
-      videoRef.current?.play();
-      return;
-    }
+     if (isMobile) {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.muted = true;
+    video.play().catch(() => {});
+
+    return;
+  }
     gsap.to(window, {
       duration: 0.8,
       scrollTo: '#awards-section',
@@ -73,6 +78,19 @@ const Hero = () => {
     }
   }, [active]);
 
+  useEffect(() => {
+  const handleResize = () => {
+    setIsMobile(window.innerWidth <= 768);
+  };
+
+  window.addEventListener('resize', handleResize);
+  handleResize(); // Set initial state
+
+  return () => {
+    window.removeEventListener('resize', handleResize);
+  };
+}, []);
+
   return (
     <section className="relative h-dvh overflow-hidden">
       <div
@@ -96,7 +114,7 @@ const Hero = () => {
           loop
           muted
           playsInline
-          preload="meta-data"
+          preload="auto"
         >
           <source src="/video/lifestyle-2.mp4" type="video/mp4" />
         </video>
