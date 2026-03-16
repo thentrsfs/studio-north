@@ -15,34 +15,24 @@ const Hero = () => {
   const [isMobile, setIsMobile] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [videoStarted, setVideoStarted] = useState(false);
 
   const handleClick = () => {
-     if (isMobile) {
-    const video = videoRef.current;
-    if (!video) return;
+  const video = videoRef.current;
 
-    if(!videoStarted) {
-    video.muted = true;
-    video.play().catch(() => {});
-    setVideoStarted(true);
-    return;
+  if (isMobile && video) {
+    if (video.paused) {
+      video.muted = true;
+      video.play().catch(() => {});
+      return;
     }
-
-    gsap.to(window, {
-      duration: 0.8,
-      scrollTo: '#awards-section',
-      ease: "power2.inOut"
-    })
-    return;
-  }
-    gsap.to(window, {
-      duration: 0.8,
-      scrollTo: '#awards-section',
-      ease: "power2.inOut"
-    })
   }
 
+  gsap.to(window, {
+    duration: 0.8,
+    scrollTo: "#awards-section",
+    ease: "power2.inOut",
+  });
+};
   useEffect(() => {
     const move = (e: MouseEvent) => {
       if (!active || !heroRef.current || isMobile) return;
