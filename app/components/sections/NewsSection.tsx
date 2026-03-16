@@ -54,7 +54,7 @@ const NewsSection = () => {
         <h2 className="lg:text-5xl font-bold font-plus uppercase text-2xl lg:leading-normal leading-tight max-w-30">
           Featured News
         </h2>
-        <CustomButton className="mt-5" text="View all" />
+        <CustomButton href="/news" className="mt-5" text="View all" />
       </div>
 
       <div className="mt-14 flex flex-col lg:gap-16 gap-4">

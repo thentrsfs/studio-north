@@ -32,7 +32,7 @@ const PromoSection = () => {
           <div ref={leftRef} className="flex flex-col lg:gap-4 gap-6">
             <p className="heading-xl">STUDIO/NORTH® helps <br className="max-lg:hidden" /> brands <span className="dark:bg-rose bg-ink lg:w-18 lg:h-18 w-7 h-7 rounded-full inline-block"></span> connect w/ culture</p>
 <div className="uppercase font-medium ">Adweek <span className="font-bold">Agency Spotlight</span> </div>
-            <CustomButton text="About Us" />
+            <CustomButton href="/about" text="About Us" />
           </div>
          <div className="bg-offwhite dark:bg-ink">
   <video

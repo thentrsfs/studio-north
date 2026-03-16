@@ -112,7 +112,7 @@ gsap.from('.reveal',{
 <h3 className="text-2xl uppercase font-bold tracking-tight">{item.title}</h3>
 <p className="text-sm font-semibold text-ink/80 w-[90%]">
 {item.description}</p>
-<CustomButton text="Learn more" />
+<CustomButton href={'/'} text="Learn more" />
     <div className="grid grid-cols-2 gap-5 max-lg:flex max-lg:overflow-x-auto max-lg:gap-4 max-lg:snap-x max-lg:snap-mandatory max-lg:scroll-smooth no-scrollbar">
       {item.images.map((image) => (
         <article key={image.id} className="group flex flex-col cursor-pointer gap-4 snap-start max-md:w-70 md:w-90 lg:w-full max-lg:shrink-0">

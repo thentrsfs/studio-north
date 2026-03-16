@@ -5,7 +5,7 @@ const Cursor = ({ className, style, } : { className?: string; style?: React.CSSP
       style={style}
     >
       <div className="w-25 h-25 rounded-full text-sm font-plus bg-offwhite border-offwhite text-ink flex items-center justify-center font-bold uppercase tracking-widest">
-        View
+        Start
       </div>
       <div className="text-offwhite flex flex-col items-center font-plus text-xs font-semibold tracking-wide">
         <span>STUDIO/NORTH®</span>

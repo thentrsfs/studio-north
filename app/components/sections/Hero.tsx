@@ -15,15 +15,25 @@ const Hero = () => {
   const [isMobile, setIsMobile] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoStarted, setVideoStarted] = useState(false);
 
   const handleClick = () => {
      if (isMobile) {
     const video = videoRef.current;
     if (!video) return;
 
+    if(!videoStarted) {
     video.muted = true;
     video.play().catch(() => {});
+    setVideoStarted(true);
+    return;
+    }
 
+    gsap.to(window, {
+      duration: 0.8,
+      scrollTo: '#awards-section',
+      ease: "power2.inOut"
+    })
     return;
   }
     gsap.to(window, {

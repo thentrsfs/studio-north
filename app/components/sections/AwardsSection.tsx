@@ -30,7 +30,7 @@ const AwardsSection = () => {
       We are a multidisciplinary design studio crafting digital experiences,
       brand systems, and interactive products that connect culture and technology.
     </p>
-    <CustomButton text="See the work" />
+    <CustomButton href="/work" text="See the work" />
 </div>
     <div className="lg:text-[20rem] text-8xl font-plus font-black -tracking-wider select-none self-end">
       S/N®
