@@ -15,6 +15,7 @@ const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
 
   const handleClick = () => {
+    if(isMobile) return;
     gsap.to(window, {
       duration: 0.8,
       scrollTo: '#awards-section',
