@@ -172,7 +172,7 @@ const Nav = () => {
 <span onClick={() => setIsMenuOpen(true)} className="lg:hidden uppercase tracking-wider font-medium font-plus">Menu</span>
 <div className={`fixed inset-0 flex flex-col justify-between pt-30 p-6 h-dvh bg-ink transition-all duration-500 ease-in-out ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}> 
   <nav className="flex flex-col gap-8 font-plus font-medium text-lg text-rose uppercase tracking-wider">
-    <a href="#">Work</a>
+    <a href="/work">Work</a>
     <a href="#">About</a>
     <a href="#">News</a>
     <a href="#">Thinking</a>
