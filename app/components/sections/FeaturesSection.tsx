@@ -43,7 +43,7 @@ const handlePointerMove = (e: React.PointerEvent) => {
   const delta = e.clientX - lastX.current
   lastX.current = e.clientX
 
-  const sensitivity = isMobile ? 1.2 : 20
+  const sensitivity = 20
   const maxDrag = containerWidth - windowWidth + 200
 
   let newX = x.get() + delta * sensitivity
@@ -146,12 +146,12 @@ useEffect(() => {
  </header>
  <div ref={cursorWrapperRef} data-cursor-wrapper className="relative" onMouseEnter={() => setActive(true)} onMouseLeave={handleLeave}>
  <motion.div ref={containerRef} 
- style={{ x, scale }}
+ style={{ x, scale, touchAction: "pan-y" }}
   onPointerDown={handlePointerDown}
   onPointerMove={handlePointerMove}
   onPointerUp={handlePointerUp}
   onPointerLeave={handlePointerUp}
-        className='flex select-none cursor-none lg:gap-26 gap-6 w-full lg:pl-24 pl-6 touch-pan-x'>
+        className='flex select-none cursor-none lg:gap-26 gap-6 w-full lg:pl-24 pl-6'>
 <div className='lg:py-32 pt-14 pb-20 flex flex-col gap-16 shrink-0 lg:max-w-110 max-w-75'>
     <div>
      <h3 className="text-4xl font-bold font-space">NOVA</h3>
