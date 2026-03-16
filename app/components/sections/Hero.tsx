@@ -3,6 +3,7 @@
 import Cursor from "@/app/components/ui/cursors/Cursor"
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { video } from "motion/react-client";
 import { useState, useEffect, useRef } from "react"
 
 gsap.registerPlugin(ScrollToPlugin);
@@ -13,9 +14,13 @@ const Hero = () => {
   const [mouse, setMouse] = useState({x: 0, y: 0});
   const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
   const heroRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const handleClick = () => {
-    if(isMobile) return;
+    if(isMobile) {
+      videoRef.current?.play();
+      return;
+    }
     gsap.to(window, {
       duration: 0.8,
       scrollTo: '#awards-section',
@@ -72,6 +77,7 @@ const Hero = () => {
     <section className="relative h-dvh overflow-hidden">
       <div
         ref={heroRef}
+        onClick={handleClick}
         className="relative w-full h-full cursor-none"
         onMouseEnter={() => setActive(true)}
         onMouseLeave={() => setActive(false)}
@@ -81,10 +87,10 @@ const Hero = () => {
             position: "absolute",
             transform: `translate(${pos.x - 50}px, ${pos.y - 50}px)`
           }}
-          onClick={handleClick}
         />
 
         <video
+          ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover"
           autoPlay
           loop

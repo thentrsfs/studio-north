@@ -1,9 +1,8 @@
-const Cursor = ({ className, style, onClick } : { className?: string; style?: React.CSSProperties; onClick?: () => void }) => {
+const Cursor = ({ className, style, } : { className?: string; style?: React.CSSProperties;}) => {
   return (
     <div
       className={`z-9 flex flex-col gap-2 select-none transition-transform duration-100 ease-out ${className}`}
       style={style}
-      onClick={onClick}
     >
       <div className="w-25 h-25 rounded-full text-sm font-plus bg-offwhite border-offwhite text-ink flex items-center justify-center font-bold uppercase tracking-widest">
         View

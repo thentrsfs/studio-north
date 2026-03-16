@@ -32,6 +32,7 @@ const FeaturesSection = () => {
 
   // Drag handlers
    const handlePointerDown = (e: React.PointerEvent) => {
+    e.preventDefault();
   setIsDragging(true)
   lastX.current = e.clientX
   e.currentTarget.setPointerCapture(e.pointerId)
