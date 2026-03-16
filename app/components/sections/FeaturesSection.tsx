@@ -14,8 +14,7 @@ const FeaturesSection = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [active, setActive] = useState(false);
   const [cursorPos, setCursorPos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
-  const x = useMotionValue(0);  
-  const lastX = useRef(0);
+  const x = useMotionValue(0); 
   const [containerWidth, setContainerWidth] = useState(0);
   const [windowWidth, setWindowWidth] = useState(0);
   const scale = useTransform(x, [-200, 0, 200], [0.98, 1, 0.98]);
@@ -28,45 +27,6 @@ const FeaturesSection = () => {
   const trackWidth = windowWidth - 96; //px padding
   const barWidth = isMobile ? 100 : 1100; //px
   const barX = useTransform(progress, p => p * (trackWidth - barWidth));
-
-
-  // Drag handlers
-   const handlePointerDown = (e: React.PointerEvent) => {
-  setIsDragging(true)
-  lastX.current = e.clientX
-  e.currentTarget.setPointerCapture(e.pointerId)
-}
-
-const handlePointerMove = (e: React.PointerEvent) => {
-  if (!isDragging) return
-
-  const delta = e.clientX - lastX.current
-  lastX.current = e.clientX
-
-  const sensitivity = isMobile ? 5 : 20
-  const maxDrag = containerWidth - windowWidth + 200
-
-  let newX = x.get() + delta * sensitivity
-
-  if (newX > 0) newX = 0
-  if (newX < -maxDrag) newX = -maxDrag
-
-  if(isMobile) {
-    x.set(newX)
-  } else {
-  animate(x, newX, {
-  type: "spring",
-  stiffness: 800,
-  damping: 60,
-  mass: 0.6
-  })
-  }
-}
-
-const handlePointerUp = (e: React.PointerEvent) => {
-  setIsDragging(false)
-  e.currentTarget.releasePointerCapture(e.pointerId)
-}
 
 // Cursor handler on leave
 const handleLeave = () => {
@@ -150,12 +110,17 @@ useEffect(() => {
  </header>
  <div ref={cursorWrapperRef} data-cursor-wrapper className="relative" onMouseEnter={() => setActive(true)} onMouseLeave={handleLeave}>
  <motion.div ref={containerRef} 
- style={{ x, scale }}
-  onPointerDown={handlePointerDown}
-  onPointerMove={handlePointerMove}
-  onPointerUp={handlePointerUp}
-  onPointerLeave={handlePointerUp}
-        className='flex select-none cursor-none lg:gap-26 gap-6 w-full lg:pl-24 pl-6 lg:touch-none'>
+  drag="x"
+  dragConstraints={{ left: -maxDrag, right: 0 }}
+  dragElastic={0.05}
+  dragTransition={{
+    power: 0.2,
+    timeConstant: 120
+  }}
+  onDragStart={() => setIsDragging(true)}
+  onDragEnd={() => setIsDragging(false)}
+  style={{ x, scale, touchAction: "pan-y" }}
+        className='flex select-none cursor-none lg:gap-26 gap-6 w-full lg:pl-24 pl-6'>
 <div className='lg:py-32 pt-14 pb-20 flex flex-col gap-16 shrink-0 lg:max-w-110 max-w-75'>
     <div>
      <h3 className="text-4xl font-bold font-space">NOVA</h3>
@@ -166,7 +131,7 @@ useEffect(() => {
         <p className='font-medium'>We partnered with Nova Labs to design a next-generation AI productivity platform, building scalable systems and intuitive interaction models.</p>
       </div>
 </div>
-<div className='lg:py-32 py-16 flex flex-col gap-16 shrink-0 max-w-110'>
+<div className='lg:py-32 py-16 flex flex-col gap-16 shrink-0 lg:max-w-110 max-w-75'>
     <div>
      <h3 className="text-4xl font-bold font-space">NORTHFIELD</h3>
       <div className="mt-2 h-0.5 bg-ink w-5" />
@@ -176,7 +141,7 @@ useEffect(() => {
         <p className='font-medium'>A brand transformation for an outdoor goods company redefining modern exploration. A new website, mobile app, and identity system.</p>
       </div>
 </div>
-<div className='lg:py-32 py-16 flex flex-col gap-16 shrink-0 max-w-110'>
+<div className='lg:py-32 py-16 flex flex-col gap-16 shrink-0 lg:max-w-110 max-w-75'>
     <div>
      <h3 className="text-4xl font-bold font-space">OFFSET</h3>
       <div className="mt-2 h-0.5 bg-ink w-5" />
@@ -186,7 +151,7 @@ useEffect(() => {
         <p className='font-medium'>A digital-first editorial experience designed to prioritize immersive storytelling. A new thing for a new generation of readers. Try it out, it&apos;s free.</p>
       </div>
 </div>
-<div className='lg:py-32 py-16 flex flex-col gap-16 shrink-0 max-w-110'>
+<div className='lg:py-32 py-16 flex flex-col gap-16 shrink-0 lg:max-w-110 max-w-75'>
     <div>
      <h3 className="text-4xl font-bold font-space">SIGNAL</h3>
       <div className="mt-2 h-0.5 bg-ink w-5" />
@@ -196,7 +161,7 @@ useEffect(() => {
         <p className='font-medium'>Reimagining a telecommunications brand for a frictionless, customer-first future. A new experience for a new generation of consumers. Good things come to those who wait.</p>
       </div>
 </div>
-<div className='lg:py-32 py-16 flex flex-col gap-16 shrink-0 max-w-110'>
+<div className='lg:py-32 py-16 flex flex-col gap-16 shrink-0 lg:max-w-110 max-w-75'>
     <div>
      <h3 className="text-4xl font-bold font-space">Razor AI</h3>
       <div className="mt-2 h-0.5 bg-ink w-5" />
