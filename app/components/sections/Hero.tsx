@@ -1,4 +1,5 @@
 'use client';
+
 import Cursor from "@/app/components/ui/cursors/Cursor"
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
@@ -10,6 +11,7 @@ const Hero = () => {
   const [pos, setPos] = useState({ x: 0, y: 0 });
   const [active, setActive] = useState(false);
   const [mouse, setMouse] = useState({x: 0, y: 0});
+  const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
   const heroRef = useRef<HTMLDivElement>(null);
 
   const handleClick = () => {
@@ -22,7 +24,7 @@ const Hero = () => {
 
   useEffect(() => {
     const move = (e: MouseEvent) => {
-      if (!active || !heroRef.current) return;
+      if (!active || !heroRef.current || isMobile) return;
 
       setMouse({x: e.clientX, y: e.clientY});
 
@@ -40,7 +42,7 @@ const Hero = () => {
 
   useEffect(() => {
   const handleScroll = () => {
-    if (!active || !heroRef.current) return;
+    if (!active || !heroRef.current || isMobile) return;
 
     const rect = heroRef.current.getBoundingClientRect();
     setPos({

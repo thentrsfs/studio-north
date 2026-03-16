@@ -1,7 +1,7 @@
 'use client'
 
 import { useTheme } from "next-themes"
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap"; 
 import { useGSAP } from "@gsap/react";
 import { SplitText } from "gsap/all";
@@ -9,6 +9,7 @@ import Image from "next/image";
 
 import CustomButton from "../components/ui/CustomButton";
 import {work} from "../data/work";
+import SplashScreen from "../components/ui/SplashScreen";
 
 gsap.registerPlugin(useGSAP,SplitText);
 
@@ -16,6 +17,7 @@ const WorkPage = () => {
   const { setTheme } = useTheme();
 
   const containerRef = useRef<HTMLDivElement>(null);
+  const [loading, setLoading] = useState(true);
 
   useGSAP(() => {
   SplitText.create(".split-heading", {
@@ -26,7 +28,8 @@ const WorkPage = () => {
     return gsap.from(self.lines, {
       y: 100,
       stagger: 0.2,
-      duration: 0.6,
+      duration: 0.8,
+      delay: 0.8,
       ease: "power4.out",
     });
   }
@@ -35,6 +38,7 @@ const WorkPage = () => {
 gsap.from('.reveal',{
   opacity: 0,
   duration: 1,
+  delay: 0.8,
   ease: "power2.inOut",
 })
   }, {scope: containerRef});
@@ -44,6 +48,8 @@ gsap.from('.reveal',{
   }, [setTheme]);
 
   return (
+    <>
+    {loading && <SplashScreen onFinish={() => setLoading(false)}/>}
     <div ref={containerRef} className="lg:pt-50 lg:pl-24 pt-32 pl-6">
       <div className="flex flex-col gap-20 pr-6 lg:pr-24">
       <div className="heading-xl lg:w-1/2 split-heading">Simple to understand. <br /> <span className="dark:bg-rose bg-ink lg:w-18 lg:h-18 w-7 h-7 rounded-full inline-block lg:mr-8"/> Impossible to miss.</div>
@@ -124,9 +130,8 @@ gsap.from('.reveal',{
   ))}
 </div>
 </div>
-
-
     </div>
+    </>
   )
 }
 
