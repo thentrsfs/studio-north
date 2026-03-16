@@ -90,7 +90,6 @@ const Hero = () => {
           muted
           playsInline
           preload="meta-data"
-          poster="/poster.png"
         >
           <source src="/video/lifestyle-2.mp4" type="video/mp4" />
         </video>
