@@ -3,6 +3,7 @@ import { useState, useEffect} from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { usePathname } from "next/navigation";
+import { useLenis } from "@/app/context/LenisContext";
 import Logo from "./logos/Logo"
 import Dots from "./Dots"
 import ProjectsPanel from "../sections/ProjectsPanel"
@@ -11,6 +12,7 @@ import CloseX from "./CloseX";
 gsap.registerPlugin(ScrollTrigger);
 const Nav = () => {
 
+    const lenis = useLenis();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isProjectsOpen, setIsProjectsOpen] = useState(false);
     const [isTransparent, setIsTransparent] = useState(true);
@@ -62,6 +64,26 @@ const Nav = () => {
       window.addEventListener("scroll", onScroll);
       return () => window.removeEventListener("scroll", onScroll);
     }, []);
+
+    // Lock scroll on menu open and reset cursor when menu closes
+    useEffect(() => {
+      if(isMenuOpen || isProjectsOpen) {
+        document.body.classList.add("overflow-y-hidden");
+      } else {
+        document.body.classList.remove("overflow-y-hidden");
+      }
+    }, [isMenuOpen, isProjectsOpen])
+
+    // Stop Lenis smooth scroll when menu and projects are open to prevent scroll jank, restart when menu closes
+    useEffect(() => {
+  if (!lenis) return;
+
+  if (isMenuOpen || isProjectsOpen) {
+    lenis.stop();
+  } else {
+    lenis.start();
+  }
+}, [isMenuOpen, isProjectsOpen, lenis]);
 
     // Refresh ScrollTrigger on pathname change
     useEffect(() => {
