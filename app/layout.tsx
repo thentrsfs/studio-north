@@ -37,7 +37,7 @@ export default function RootLayout({
 			lang='en'
 			suppressHydrationWarning>
 			<body
-				className={`${inter.variable} ${spaceGrotesk.variable} ${plusJakartaSans.variable} antialiased font-inter bg-offwhite dark:bg-ink text-ink dark:text-rose transition-colors duration-500`}>
+				className={`${inter.variable} ${spaceGrotesk.variable} ${plusJakartaSans.variable} antialiased font-inter bg-offwhite dark:bg-ink text-ink dark:text-rose`}>
 				<SmoothScrollProvider>
 					<ThemeProvider
 						attribute='class'

@@ -1,55 +1,69 @@
 'use client';
 
-import gsap from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-import { useRef} from "react";
-import CustomButton from "../ui/CustomButton";
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+import { useRef } from 'react';
+import CustomButton from '../ui/CustomButton';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const PromoSection = () => {
+	const sectionRef = useRef<HTMLDivElement>(null);
+	const leftRef = useRef<HTMLDivElement>(null);
 
-    const sectionRef = useRef<HTMLDivElement>(null);
-    const leftRef = useRef<HTMLDivElement>(null);
+	useGSAP(
+		() => {
+			const isMobile = window.innerWidth < 1050;
 
-    useGSAP(() => {
-      const isMobile = window.innerWidth < 1050;
+			if (isMobile) return;
+			ScrollTrigger.create({
+				trigger: sectionRef.current,
+				start: 'top top+=120',
+				end: 'bottom bottom-=220',
+				pin: leftRef.current,
+				pinSpacing: false,
+				scrub: 0.5,
+			});
+		},
+		{ scope: sectionRef },
+	);
+	return (
+		<div className='relative lg:pt-50 pt-16 bg-white dark:bg-ink transition-colors duration-500 ease-out'>
+			<div
+				ref={sectionRef}
+				id='promo-section'
+				className='lg:grid grid-cols-2 max-lg:flex flex-col-reverse max-lg:gap-12 lg:px-24 px-6'>
+				<div
+					ref={leftRef}
+					className='flex flex-col lg:gap-4 gap-6'>
+					<p className='heading-xl'>
+						STUDIO/NORTH® helps <br className='max-lg:hidden' /> brands{' '}
+						<span className='dark:bg-rose bg-ink lg:w-18 lg:h-18 w-7 h-7 rounded-full inline-block'></span>{' '}
+						connect w/ culture
+					</p>
+					<div className='uppercase font-medium '>
+						Adweek <span className='font-bold'>Agency Spotlight</span>{' '}
+					</div>
+					<CustomButton
+						href='/about'
+						text='About Us'
+					/>
+				</div>
+				<div className='bg-offwhite dark:bg-ink'>
+					<video
+						className='w-full h-full object-cover'
+						autoPlay
+						loop
+						muted
+						playsInline
+						preload='metadata'>
+						<source src='/video/woman_skateboarding.mp4' />
+					</video>
+				</div>
+			</div>
+		</div>
+	);
+};
 
-      if(isMobile) return;
-        ScrollTrigger.create({
-            trigger: sectionRef.current,
-            start: "top top+=120",
-            end: "bottom bottom-=220",
-            pin: leftRef.current,
-            pinSpacing: false,
-            scrub: 0.5
-        })
-    }, {scope: sectionRef});
-  return (
-    <div className="relative lg:pt-50 pt-16">
-     <div ref={sectionRef} id="promo-section" className="lg:grid grid-cols-2 max-lg:flex flex-col-reverse max-lg:gap-12 lg:px-24 px-6">
-          <div ref={leftRef} className="flex flex-col lg:gap-4 gap-6">
-            <p className="heading-xl">STUDIO/NORTH® helps <br className="max-lg:hidden" /> brands <span className="dark:bg-rose bg-ink lg:w-18 lg:h-18 w-7 h-7 rounded-full inline-block"></span> connect w/ culture</p>
-<div className="uppercase font-medium ">Adweek <span className="font-bold">Agency Spotlight</span> </div>
-            <CustomButton href="/about" text="About Us" />
-          </div>
-         <div className="bg-offwhite dark:bg-ink">
-  <video
-    className="w-full h-full object-cover"
-    autoPlay
-    loop
-    muted
-    playsInline
-    preload="metadata"
-  >
-    <source src="/video/woman_skateboarding.mp4" />
-  </video>
-</div>
-
-        </div>
-    </div>
-  )
-}
-
-export default PromoSection
+export default PromoSection;
