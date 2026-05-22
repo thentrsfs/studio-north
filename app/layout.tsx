@@ -5,6 +5,7 @@ import SmoothScrollProvider from './components/ui/SmoothScrollProvider';
 import { ThemeProvider } from 'next-themes';
 import Nav from './components/ui/Nav';
 import Footer from './components/sections/Footer';
+import ScrollToTop from './components/ui/ScrollToTop';
 
 const inter = Inter({
 	variable: '--font-inter',
@@ -42,6 +43,7 @@ export default function RootLayout({
 						attribute='class'
 						defaultTheme='light'
 						enableSystem={false}>
+						<ScrollToTop />
 						<Nav />
 						{children}
 						<Footer />

@@ -42,8 +42,6 @@ export default function Home() {
 
 	useEffect(() => {
 		setTheme('light');
-
-		window.scrollTo(0, 0);
 	}, []);
 
 	return (
