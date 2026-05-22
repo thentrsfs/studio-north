@@ -4,15 +4,21 @@ import { useEffect } from 'react';
 
 export default function ScrollToTop() {
 	useEffect(() => {
-		// disable browser scroll restoration
-		if ('scrollRestoration' in window.history) {
-			window.history.scrollRestoration = 'manual';
-		}
+		const scrollToTop = () => {
+			window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+		};
 
-		// force top after hydration
+		window.history.scrollRestoration = 'manual';
+
 		requestAnimationFrame(() => {
-			window.scrollTo(0, 0);
+			requestAnimationFrame(scrollToTop);
 		});
+
+		window.addEventListener('load', scrollToTop);
+
+		return () => {
+			window.removeEventListener('load', scrollToTop);
+		};
 	}, []);
 
 	return null;
