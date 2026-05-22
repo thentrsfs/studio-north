@@ -8,7 +8,7 @@ const AwardsSection = () => {
 	return (
 		<section
 			id='awards-section'
-			className='lg:px-24 lg:py-20 bg-white '>
+			className='lg:px-24 lg:py-20 bg-offwhite '>
 			<article className='flex justify-around lg:py-30 gap-4 py-12 max-lg:px-6 font-plus'>
 				<div className='flex flex-col gap-4 items-center hover:scale-105 transition-transform duration-300 cursor-pointer lg:w-80'>
 					<RunetaskLogo />

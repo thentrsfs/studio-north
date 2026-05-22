@@ -50,7 +50,7 @@ const NewsSection = () => {
 	}, []);
 
 	return (
-		<section className='lg:px-24 px-6 py-32 lg:pt-60 lg:pb-80 bg-white dark:bg-ink transition-colors duration-500 ease-out'>
+		<section className='lg:px-24 px-6 py-32 lg:pt-60 lg:pb-80 bg-offwhite dark:bg-ink transition-colors duration-500 ease-out'>
 			<div className='flex justify-between items-center'>
 				<h2 className='lg:text-5xl font-bold font-plus uppercase text-2xl lg:leading-normal leading-tight max-w-30'>
 					Featured News

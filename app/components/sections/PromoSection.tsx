@@ -29,7 +29,7 @@ const PromoSection = () => {
 		{ scope: sectionRef },
 	);
 	return (
-		<div className='relative lg:pt-50 pt-16 bg-white dark:bg-ink transition-colors duration-500 ease-out'>
+		<div className='relative lg:pt-50 pt-16 bg-offwhite dark:bg-ink transition-colors duration-500 ease-out'>
 			<div
 				ref={sectionRef}
 				id='promo-section'

@@ -99,7 +99,7 @@ const FeaturesSection = () => {
 	}, []);
 
 	return (
-		<section className='py-3 relative bg-white dark:bg-ink transition-colors duration-500 ease-out'>
+		<section className='py-3 relative bg-offwhite dark:bg-ink transition-colors duration-500 ease-out'>
 			<header className='lg:px-24 px-6'>
 				<div className='lg:mt-32 mt-24 h-px bg-ink' />
 				<div className='lg:grid lg:grid-cols-3 flex text-xs font-plus font-semibold py-4'>
