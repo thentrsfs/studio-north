@@ -56,8 +56,8 @@ const WorkPage = () => {
 		<>
 			<div
 				ref={containerRef}
-				className='lg:pt-50 lg:pl-24 pt-32 pl-6 bg-offwhite invisible'>
-				<div className='flex flex-col gap-20 pr-6 lg:pr-24'>
+				className='lg:pt-50 lg:px-24 pt-32 pl-6 bg-offwhite invisible'>
+				<div className='flex flex-col gap-20'>
 					<div className='heading-xl lg:w-1/2 split-heading'>
 						Simple to understand. <br />{' '}
 						<span className='dark:bg-rose bg-ink lg:w-18 lg:h-18 w-7 h-7 rounded-full inline-block lg:mr-8' />{' '}
@@ -111,7 +111,7 @@ const WorkPage = () => {
 							<div
 								key={item.id}
 								className='flex flex-col gap-8 pb-12'>
-								<div className='pr-6 lg:pr-24'>
+								<div className='max-md:pr-6 '>
 									<hr className='bg-ink' />
 									<div className='flex justify-between mt-2 text-sm font-semibold font-plus'>
 										<span>0{item.id}</span>
@@ -121,7 +121,7 @@ const WorkPage = () => {
 								<h3 className='text-2xl uppercase font-bold tracking-tight'>
 									{item.title}
 								</h3>
-								<p className='text-sm font-semibold text-ink/80 w-[90%]'>
+								<p className='text-sm font-semibold text-ink/80 pr-6'>
 									{item.description}
 								</p>
 								<CustomButton
